@@ -8,7 +8,7 @@ import PostData from './components/PostData.vue';
   <v-app>
     <v-main>
     <Home/>
-    <!-- <PostData/> -->
+    <PostData/>
     </v-main>
   </v-app>
 </template>
