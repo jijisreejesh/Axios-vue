@@ -16,6 +16,9 @@ const instance = axios.create({
   timeout: 1000,
   //   headers: {'X-Custom-Header': 'foobar'}
 });
+
+
+
 instance.get("").then((res) => {
   meals.value = res.data.meals;
   filteredMeals.value = meals.value;
