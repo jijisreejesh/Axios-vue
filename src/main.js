@@ -6,6 +6,7 @@
 
 // Plugins
 import { registerPlugins } from '@/plugins'
+import { mdi } from 'vuetify/iconsets/mdi'
 
 // Components
 import App from './App.vue'
