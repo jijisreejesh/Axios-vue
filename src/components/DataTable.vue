@@ -1,12 +1,13 @@
 <script setup>
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import { onMounted, ref ,computed} from "vue";
 import { IconCheck, IconX } from "@tabler/icons-vue";
 const details = ref([]);
 const search = ref("");
 const selected=ref([])
 const page=ref(1);
 const itemsPerPage=ref(5)
+
 const sortBy=[{key:'title',order:'asc'}]
 const headers = ref([
   { title: "Id", key: "id" },
@@ -14,6 +15,7 @@ const headers = ref([
   { title: "Completed", key: "completed" },
 ]);
 onMounted(() => {
+
   const instance = axios.create({
     baseURL: "https://jsonplaceholder.typicode.com/todos",
     timeout: 5000,
@@ -90,6 +92,7 @@ onMounted(() => {
   <v-data-table 
   :headers="headers" 
   :items="details" 
+  :loading="loading"
    v-model:sort-by="sortBy"
   v-model:page="page"
   v-model="selected"
