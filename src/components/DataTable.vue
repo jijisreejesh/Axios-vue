@@ -7,7 +7,7 @@ const search = ref("");
 const selected=ref([])
 const page=ref(1);
 const itemsPerPage=ref(5)
-
+const loading=ref(false);
 const sortBy=[{key:'title',order:'asc'}]
 const headers = ref([
   { title: "Id", key: "id" },
@@ -25,7 +25,7 @@ onMounted(() => {
     function (config) {
       // Do something before request is sent
       console.log("Before request send" + config);
-
+     loading.value=true;
       return config;
     },
     function (error) {
@@ -45,6 +45,7 @@ onMounted(() => {
       ];
       // response.data.push(addNew)
       response.data = [...response.data, ...addOne];
+      loading.value=false;
       return response;
     },
     function (error) {
@@ -102,11 +103,15 @@ onMounted(() => {
   return-object
   show-select
   >
+ 
 
+  <template v-slot:header.id="{ column }">
+      {{ column.title.toUpperCase() }}
+    </template>
     <!--template for tick-->
     <template v-slot:item.completed="{ item }">
       <div>
-        <component :is="item.completed ? IconCheck : IconX" size="20" />
+        <component  :is="item.completed ? IconCheck : IconX" size="20" />
       </div>
     </template>
 
